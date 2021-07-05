@@ -180,6 +180,21 @@ bool CSpinEditEx::ValueStep(double value_step)
    return(false);
   }  
 //+------------------------------------------------------------------+
+//| Set current value                                                |
+//+------------------------------------------------------------------+
+bool CSpinEditEx::ValueDigits(int value_digits)
+  {
+//--- if value was changed
+   if(m_value_digits!=value_digits)
+     {
+      m_value_digits=value_digits;
+      //--- call virtual handler
+      return(true);
+     }
+//--- value has not been changed
+   return(false);
+  }    
+//+------------------------------------------------------------------+
 //| Set checked value                                                |
 //+------------------------------------------------------------------+
 bool CSpinEditEx::Checked(bool checked)
