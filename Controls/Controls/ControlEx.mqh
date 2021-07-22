@@ -6,27 +6,20 @@
 #include <Controls\WndContainer.mqh>
 #include <Controls\Edit.mqh>
 #include <Controls\BmpButton.mqh>
-#include <Controls\CheckBox.mqh>
 #include <Controls\ComboBox.mqh>
-
-class CCheckBoxEx : public CCheckBox
-  {
-protected:
-   //--- create dependent controls
-   virtual bool      CreateLabel(void) { /*CCheckBox::CreateLabel(); m_label.Hide();*/ return true; }
-  };
+#include "CheckBoxEx.mqh"
   
 class CComboBoxEx : public CComboBox
   {
 public:
    //--- create dependent controls
    bool Expand(void) { return ListShow(); }
-  };  
+  };    
 //+------------------------------------------------------------------+
 //| Resources                                                        |
 //+------------------------------------------------------------------+
-#resource "SpinInc.bmp"
-#resource "SpinDec.bmp"
+#resource "res\\SpinInc.bmp"
+#resource "res\\SpinDec.bmp"
 //+------------------------------------------------------------------+
 //| Class CSpinEditEx                                                  |
 //| Usage: class that implements the "Up-Down" control               |
@@ -349,7 +342,7 @@ bool CSpinEditEx::CreateInc(void)
 //--- create
    if(!m_inc.Create(m_chart_id,m_name+"Inc",m_subwin,x1,y1,x2,y2))
       return(false);
-   if(!m_inc.BmpNames("::SpinInc.bmp"))
+   if(!m_inc.BmpNames("::res\\SpinInc.bmp"))
       return(false);
    if(!Add(m_inc))
       return(false);
@@ -371,7 +364,7 @@ bool CSpinEditEx::CreateDec(void)
 //--- create
    if(!m_dec.Create(m_chart_id,m_name+"Dec",m_subwin,x1,y1,x2,y2))
       return(false);
-   if(!m_dec.BmpNames("::SpinDec.bmp"))
+   if(!m_dec.BmpNames("::res\\SpinDec.bmp"))
       return(false);
    if(!Add(m_dec))
       return(false);
@@ -389,7 +382,7 @@ bool CSpinEditEx::CreateCheckbox(void)
       return(true);
       
 //--- create
-   if(!m_chkbox.Create(m_chart_id,m_name+"Checkbox",m_subwin,0,0,20,20))
+   if(!m_chkbox.Create(m_chart_id,m_name+"Checkbox",m_subwin,0,0,20,20,true))
       return(false);
    if(!Add(m_chkbox))
       return(false);
